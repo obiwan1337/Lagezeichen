@@ -1,0 +1,49 @@
+html, body {
+  width: 100vw;
+  height: 100vh;
+  margin: 0px;
+  padding: 0px;
+  background-color: black;
+  overflow: hidden;
+  font-family:'Gill Sans', 'Gill Sans MT', sans-serif;
+}
+
+scene {
+  width: 1280px;
+  height: 720px;
+  display: inline-block;
+  position: absolute;
+}
+
+canvas {
+  width: 100%;
+  height: 100%;
+} 
+
+/* speech bar */
+speech {
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  color: beige;
+  background-color: rgba(11, 14, 19, 0.9);
+  width: 100%;
+  height: 10vh;
+}
+
+speech[class=""] content {
+  left: 2%;
+  color: rgb(255, 255, 255);
+  font-family: 'Comic Sans', 'Comic Sans MT', sans-serif;
+}
+
+speech.Protagonist, speech.Narrator, speech.Lustus, speech.Leter, speech.Lob name {
+  font-size: 14pt;
+  display: block;
+  color: rgb(98, 113, 161);
+  margin-bottom: 0px;
+} 
+
+speech.Protagonist, speech.Narrator, speech.Joe, speech.Allison name content {
+  color: rgb(203, 253, 255);
+}
