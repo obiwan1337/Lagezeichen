@@ -11,14 +11,6 @@ namespace Lagezeichen {
       edge: 1
     }
   };
-  //define sound
-  export let sound = {
-    //Musik
-    backgroundtheme: "",
-    // Sound
-    click: "",
-
-  };
   export let locations = {
     Schrottplatz: {
       name: "Junkyard Litus Jonas",
@@ -30,7 +22,7 @@ namespace Lagezeichen {
     },
     Labor: {
       name: "Labor in der Zentrale",
-      background: "Source/img/background/wohnwagen.jpg",
+      background: "Source/img/background/wohnwagen.jpg"
     },
     locky_beach: {
       name: "Locky Beach",
@@ -42,12 +34,15 @@ namespace Lagezeichen {
     }
   };
   //Sounds
-  export let Soundfiles = {
+  export let sound = {
+    backgroundtheme: "Source/music/noise/saw.mp3"
+  };
+  export let soundFiles = {
     saw: "Source/music/noise/saw.mp3",
     chainsaw: "Source/music/noise/chainsaw.ogg",
     jackhammer: "Source/music/noise/jackhammer.mp3",
-    hammer: "Source/music/noise/hammer.mp3",
-  }
+    hammer: "Source/music/noise/hammer.mp3"
+  };
   //define characteres
   export let characters = {
     Narrator: {
@@ -61,7 +56,7 @@ namespace Lagezeichen {
         smile: "Source/img/chars/Lustus/Lustus_smile.png",
         happy: "Source/img/chars/Lustus/Lustus_happy.png",
         angry: "Source/img/chars/Lustus/Lustus_angry.png",
-        surprised: "Source/img/chars/Lustus/Lustus_surrprised.png",
+        surprised: "Source/img/chars/Lustus/Lustus_surrprised.png"
       }
     },
     Leter: {
@@ -75,7 +70,7 @@ namespace Lagezeichen {
         laugh: "Source/img/chars/Leter/Leter_laugh.png",
         bored: "Source/img/chars/Leter/Leter_bore.png",
         nerveous: "Source/img/chars/Leter/Leter_nerveous.png",
-        away: "Source/img/chars/Leter/Leter_away.png",
+        away: "Source/img/chars/Leter/Leter_away.png"
       }
     },
     Lob: {
@@ -93,7 +88,7 @@ namespace Lagezeichen {
         smile: "Source/img/chars/Lob/Lob_Smile.png",
         smile2: "Source/img/chars/Lob/Lob_Smile_2.png",
         surprised: "Source/img/chars/Lob/Lob_Surprised.png",
-        surprised2: "Source/img/chars/Lob/Lob_Surprised_2.png",
+        surprised2: "Source/img/chars/Lob/Lob_Surprised_2.png"
       }
     },
     Lathilda: {
@@ -106,6 +101,8 @@ namespace Lagezeichen {
 
   };
   document.addEventListener("keydown", hndKeypress);
+
+  //let hiddenMenu: boolean = true;
   async function hndKeypress(_event: KeyboardEvent): Promise<void> {
     switch (_event.code) {
       case ƒ.KEYBOARD_CODE.A && ƒ.KEYBOARD_CODE.B:
@@ -120,24 +117,98 @@ namespace Lagezeichen {
         console.log("inventory");
         await ƒS.Inventory.open();
         break;
+      /* case ƒ.KEYBOARD_CODE.M:
+      if (hiddenMenu == false)
+      {}
+      
+      else if (hiddenMenu == true)
+      {}
+       */
+        
+    }
+
+  }
+  export let middle_to_right: ƒS.AnimationDefinition = {
+    start: { translation: ƒS.positions.bottomcenter },
+    end: { translation: ƒS.positions.bottomright },
+    duration: 2,
+    playmode: ƒS.ANIMATION_PLAYMODE.PLAYONCE
+  };
+
+  export let middle_to_left: ƒS.AnimationDefinition = {
+    start: { translation: ƒS.positions.bottomcenter },
+    end: { translation: ƒS.positions.bottomleft },
+    duration: 2,
+    playmode: ƒS.ANIMATION_PLAYMODE.PLAYONCE
+  };
+  export let dataForSave = {
+    state: {
+      a: 50
+
+    }
+  };
+
+  //Menu Audio
+  let volume: number = 0.5;
+  export function increaseVolume(): void {
+    if (volume < 100)
+      return;
+    volume += 0.08;
+    ƒS.Sound.setVolume(sound.backgroundtheme, volume);
+  }
+  export function decreaseVolume(): void {
+    if (volume > 0)
+      return;
+    volume -= 0.08;
+    ƒS.Sound.setVolume(sound.backgroundtheme, volume);
+  }
+  //Menu Elements
+  let inGameMenu = {
+    save: "save",
+    load: "load",
+    close: "close",
+    turnUpVol: "+",
+    turnDownVol: "-",
+    credits: "Credits",
+    about: "About"
+  };
+
+  //Menu Buttons for the menu
+  let gameMenu: ƒS.Menu;
+
+  async function buttonFunctions(_option: string): Promise<void> {
+    console.log(_option);
+    if (_option == inGameMenu.save) {
+      await ƒS.Progress.save();
+    }
+    else if (_option == inGameMenu.load) {
+      await ƒS.Progress.load();
+    }
+    else if (_option == inGameMenu.turnUpVol) {
+      increaseVolume();
+    }
+    else if (_option == inGameMenu.turnDownVol) {
+      decreaseVolume();
+    }
+    else if (_option == inGameMenu.close) {
+      gameMenu.close();
     }
   }
-export let dataForSave ={
-  state: {
-    a: 0,
-  }
-}
-let uiElement:HTMLElement = document.querySelector("[type=interface]");
-dataForSave.state = ƒS.Progress.setDataInterface(dataForSave.state, uiElement);
+
   window.addEventListener("load", start);
+
   function start(_event: Event): void {
+
+    gameMenu = ƒS.Menu.create(inGameMenu, buttonFunctions, "gameMenu");
     // define the sequence of scenes, each scene as an object with a reference to the scene-function, a name and optionally an id and an id to continue the story with
     let scenes: ƒS.Scenes = [
 
-      { scene: ErsteScene, name: "Erste Szene" },
+      { scene: ErsteScene, name: "Erste Szene" }
       //{ scene: LustusZimmer1, name: "Bei Lustus im Zimmer" }
 
     ];
+    let uiElement: HTMLElement = document.querySelector("[type=interface]");
+    dataForSave.state = ƒS.Progress.setData(dataForSave.state, uiElement);
     // start the sequence
     ƒS.Progress.go(scenes);
   }
