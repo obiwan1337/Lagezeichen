@@ -1,0 +1,47 @@
+let animation2: ƒS.AnimationDefinition = {
+    start: { translation: ƒS.positions.bottomleft},
+    end: { translation: ƒS.positions.bottomright},
+    duration: 3,
+    playmode: ƒS.ANIMATION_PLAYMODE.PLAYONCE
+  };
+
+
+
+  ƒS.Speech.hide();
+  await ƒS.Location.show(locations.bench);
+  // await ƒS.Character.animate(characters.Aoi, characters.Aoi.pose.normal, animation);
+  // await ƒS.update(2);
+  await ƒS.Character.animate(characters.Aoi, characters.Aoi.pose.normal, animation2);
+  await ƒS.update(2);
+
+
+    let classDecisionElement = await ƒS.Menu.getInput(classDecision, "class"); {
+        switch (classDecisionElement) {
+          case classDecision.iSaySword:
+            await ƒS.Speech.tell(characters.Narrator, "Sword. The way of the sword.");
+            ƒS.Speech.clear();
+            playerClass = "Sword";
+            await ƒS.update(1);
+            break;
+          case classDecision.iSayBow:
+            await ƒS.Speech.tell(characters.Narrator, "Bow. The way of the bow.");
+            playerClass = "Bow";
+            ƒS.Speech.clear();
+            await ƒS.update(1);
+            break;
+          case classDecision.iSayMage:
+            await ƒS.Speech.tell(characters.Narrator, "Magic. The way of magic.");
+            playerClass = "Mage";
+            ƒS.Speech.clear();
+            await ƒS.update(1);
+            break;
+          case classDecision.iSayRogue:
+            await ƒS.Speech.tell(characters.Narrator, "Shadow. The way of the shadow.");
+            playerClass = "Rogue";
+            ƒS.Speech.clear();
+            await ƒS.update(1);
+            break;
+          default:
+            break;
+        }
+      }
