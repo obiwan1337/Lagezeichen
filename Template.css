@@ -31,19 +31,19 @@ speech {
   height: 10vh;
 }
 
-speech[class=""] content {
-  left: 2%;
-  color: rgb(255, 255, 255);
-  font-family: 'Comic Sans', 'Comic Sans MT', sans-serif;
-}
-
-speech.Protagonist, speech.Narrator, speech.Lustus, speech.Leter, speech.Lob name {
+speech>name {
   font-size: 14pt;
   display: block;
   color: rgb(98, 113, 161);
   margin-bottom: 0px;
 } 
 
-speech.Protagonist, speech.Narrator, speech.Joe, speech.Allison name content {
+speech>content {
   color: rgb(203, 253, 255);
+}
+
+meter::-webkit-meter-optimum-value {
+  background-image: linear-gradient(
+    
+  )
 }

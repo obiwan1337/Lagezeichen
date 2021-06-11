@@ -8,10 +8,6 @@ declare namespace Lagezeichen {
             edge: number;
         };
     };
-    let sound: {
-        backgroundtheme: string;
-        click: string;
-    };
     let locations: {
         Schrottplatz: {
             name: string;
@@ -34,7 +30,10 @@ declare namespace Lagezeichen {
             background: string;
         };
     };
-    let Soundfiles: {
+    let sound: {
+        backgroundtheme: string;
+    };
+    let soundFiles: {
         saw: string;
         chainsaw: string;
         jackhammer: string;
@@ -95,11 +94,15 @@ declare namespace Lagezeichen {
             };
         };
     };
+    let middle_to_right: ƒS.AnimationDefinition;
+    let middle_to_left: ƒS.AnimationDefinition;
     let dataForSave: {
         state: {
             a: number;
         };
     };
+    function increaseVolume(): void;
+    function decreaseVolume(): void;
 }
 declare namespace Lagezeichen {
     function ErsteScene(): ƒS.SceneReturn;
