@@ -14,15 +14,15 @@ namespace Lagezeichen {
   export let locations = {
     Schrottplatz: {
       name: "Junkyard Litus Jonas",
-      background: "Source/img/background/schrottplatz.jpg"
+      background: "Source/img/background/schrottplatz.png"
     },
     Wohnwagen: {
       name: "Zentrale der 3 Lagezeichen",
-      background: "Source/img/background/wohnwagen.jpg"
+      background: "Source/img/background/wohnwagen.png"
     },
     Labor: {
       name: "Labor in der Zentrale",
-      background: "Source/img/background/wohnwagen.jpg"
+      background: "Source/img/background/laboratory.jpg"
     },
     locky_beach: {
       name: "Locky Beach",
@@ -31,6 +31,10 @@ namespace Lagezeichen {
     chinatown: {
       name: "China Town",
       background: "Source/img/background/chinatown_front.jpg"
+    },
+    BS: {
+      name: "",
+      background: "Source/img/background/blackscreen.jpg"
     }
   };
   //Sounds
@@ -47,6 +51,13 @@ namespace Lagezeichen {
   export let characters = {
     Narrator: {
       name: ""
+    },
+    Deliveryboy: {
+      name: "unbekannt",
+      origin: ƒS.ORIGIN.BOTTOMRIGHT,
+      pose: {
+        normal: "Source/img/chars/placeholder/ph.png"
+      }
     },
     Lustus: {
       name: "Lustus Lonas",
@@ -77,18 +88,12 @@ namespace Lagezeichen {
       name: "Lob Landrews",
       origin: ƒS.ORIGIN.BOTTOMLEFT,
       pose: {
-        angry: "Source/img/chars/Lob/Lob_Angry.png",
-        angry2: "Source/img/chars/Lob/Lob_Angry_2.png",
-        happy: "Source/img/chars/Lob/Lob_Happy.png",
-        happy2: "Source/img/chars/Lob/Lob_Happy_2.png",
-        confident: "Source/img/chars/Lob/Lob_Confident.png",
-        confident2: "Source/img/chars/Lob/Lob_Confident_2.png",
-        sad: "Source/img/chars/Lob/Lob_Sad.png",
-        sad2: "Source/img/chars/Lob/Lob_Sad_2.png",
-        smile: "Source/img/chars/Lob/Lob_Smile.png",
-        smile2: "Source/img/chars/Lob/Lob_Smile_2.png",
-        surprised: "Source/img/chars/Lob/Lob_Surprised.png",
-        surprised2: "Source/img/chars/Lob/Lob_Surprised_2.png"
+        normal: "Source/img/chars/Lob/Lob.png",
+        angry: "Source/img/chars/Lob/Lob_angry.png",
+        happy: "Source/img/chars/Lob/Lob_happy.png",
+        smile: "Source/img/chars/Lob/Lob_smile.png",
+        surprised: "Source/img/chars/Lob/Lob_surprised.png"
+
       }
     },
     Lathilda: {
@@ -100,42 +105,37 @@ namespace Lagezeichen {
     }
 
   };
-  document.addEventListener("keydown", hndKeypress);
-
-  //let hiddenMenu: boolean = true;
-  async function hndKeypress(_event: KeyboardEvent): Promise<void> {
-    switch (_event.code) {
-      case ƒ.KEYBOARD_CODE.A && ƒ.KEYBOARD_CODE.B:
-        console.log("Save");
-        await ƒS.Progress.save();
-        break;
-      case ƒ.KEYBOARD_CODE.C:
-        console.log("load");
-        await ƒS.Progress.load();
-        break;
-      case ƒ.KEYBOARD_CODE.I:
-        console.log("inventory");
-        await ƒS.Inventory.open();
-        break;
-      /* case ƒ.KEYBOARD_CODE.M:
-      if (hiddenMenu == false)
-      {}
-      
-      else if (hiddenMenu == true)
-      {}
-       */
-        
+  //ITEMS
+  export let items = {
+    geschlossenesPaket: {
+      name: "Paket",
+      image: "Source/img/items/geschlossenesPaket.png",
+      description: "Ein ziemlich leichtes und verschlossenes Paket. Es wurde an Lustus von einem Unbekannten übergeben."
     }
+  };
 
-  }
-  export let middle_to_right: ƒS.AnimationDefinition = {
+  //ANIMATIONS
+
+
+  export let middleToRight: ƒS.AnimationDefinition = {
     start: { translation: ƒS.positions.bottomcenter },
     end: { translation: ƒS.positions.bottomright },
     duration: 2,
     playmode: ƒS.ANIMATION_PLAYMODE.PLAYONCE
   };
-
-  export let middle_to_left: ƒS.AnimationDefinition = {
+  export let rightTowardsMid: ƒS.AnimationDefinition = {
+    start: { translation: ƒS.positions.bottomcenter },
+    end: { translation: ƒS.positions.bottomcenter },
+    duration: 1,
+    playmode: ƒS.ANIMATION_PLAYMODE.PLAYONCE
+  };
+  export let midTowardsRight: ƒS.AnimationDefinition = {
+    start: { translation: ƒS.positions.bottomcenter },
+    end: { translation: ƒS.positions.bottomcenter },
+    duration: 1,
+    playmode: ƒS.ANIMATION_PLAYMODE.PLAYONCE
+  };
+  export let middleToLeft: ƒS.AnimationDefinition = {
     start: { translation: ƒS.positions.bottomcenter },
     end: { translation: ƒS.positions.bottomleft },
     duration: 2,
@@ -194,7 +194,34 @@ namespace Lagezeichen {
       gameMenu.close();
     }
   }
+  document.addEventListener("keydown", hndKeypress);
 
+  //let hiddenMenu: boolean = true;
+  async function hndKeypress(_event: KeyboardEvent): Promise<void> {
+    switch (_event.code) {
+      case ƒ.KEYBOARD_CODE.A && ƒ.KEYBOARD_CODE.B:
+        console.log("Save");
+        await ƒS.Progress.save();
+        break;
+      case ƒ.KEYBOARD_CODE.C:
+        console.log("load");
+        await ƒS.Progress.load();
+        break;
+      case ƒ.KEYBOARD_CODE.I:
+        console.log("inventory");
+        await ƒS.Inventory.open();
+        break;
+      /* case ƒ.KEYBOARD_CODE.M:
+      if (hiddenMenu == false)
+      {}
+      
+      else if (hiddenMenu == true)
+      {}
+       */
+
+    }
+
+  }
   window.addEventListener("load", start);
 
   function start(_event: Event): void {
