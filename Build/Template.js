@@ -15,15 +15,15 @@ var Lagezeichen;
     Lagezeichen.locations = {
         Schrottplatz: {
             name: "Junkyard Litus Jonas",
-            background: "Source/img/background/schrottplatz.jpg"
+            background: "Source/img/background/schrottplatz.png"
         },
         Wohnwagen: {
             name: "Zentrale der 3 Lagezeichen",
-            background: "Source/img/background/wohnwagen.jpg"
+            background: "Source/img/background/wohnwagen.png"
         },
         Labor: {
             name: "Labor in der Zentrale",
-            background: "Source/img/background/wohnwagen.jpg"
+            background: "Source/img/background/laboratory.jpg"
         },
         locky_beach: {
             name: "Locky Beach",
@@ -32,6 +32,10 @@ var Lagezeichen;
         chinatown: {
             name: "China Town",
             background: "Source/img/background/chinatown_front.jpg"
+        },
+        BS: {
+            name: "",
+            background: "Source/img/background/blackscreen.jpg"
         }
     };
     //Sounds
@@ -48,6 +52,13 @@ var Lagezeichen;
     Lagezeichen.characters = {
         Narrator: {
             name: ""
+        },
+        Deliveryboy: {
+            name: "unbekannt",
+            origin: Lagezeichen.ƒS.ORIGIN.BOTTOMRIGHT,
+            pose: {
+                normal: "Source/img/chars/placeholder/ph.png"
+            }
         },
         Lustus: {
             name: "Lustus Lonas",
@@ -78,18 +89,11 @@ var Lagezeichen;
             name: "Lob Landrews",
             origin: Lagezeichen.ƒS.ORIGIN.BOTTOMLEFT,
             pose: {
-                angry: "Source/img/chars/Lob/Lob_Angry.png",
-                angry2: "Source/img/chars/Lob/Lob_Angry_2.png",
-                happy: "Source/img/chars/Lob/Lob_Happy.png",
-                happy2: "Source/img/chars/Lob/Lob_Happy_2.png",
-                confident: "Source/img/chars/Lob/Lob_Confident.png",
-                confident2: "Source/img/chars/Lob/Lob_Confident_2.png",
-                sad: "Source/img/chars/Lob/Lob_Sad.png",
-                sad2: "Source/img/chars/Lob/Lob_Sad_2.png",
-                smile: "Source/img/chars/Lob/Lob_Smile.png",
-                smile2: "Source/img/chars/Lob/Lob_Smile_2.png",
-                surprised: "Source/img/chars/Lob/Lob_Surprised.png",
-                surprised2: "Source/img/chars/Lob/Lob_Surprised_2.png"
+                normal: "Source/img/chars/Lob/Lob.png",
+                angry: "Source/img/chars/Lob/Lob_angry.png",
+                happy: "Source/img/chars/Lob/Lob_happy.png",
+                smile: "Source/img/chars/Lob/Lob_smile.png",
+                surprised: "Source/img/chars/Lob/Lob_surprised.png"
             }
         },
         Lathilda: {
@@ -100,38 +104,34 @@ var Lagezeichen;
             }
         }
     };
-    document.addEventListener("keydown", hndKeypress);
-    //let hiddenMenu: boolean = true;
-    async function hndKeypress(_event) {
-        switch (_event.code) {
-            case Lagezeichen.ƒ.KEYBOARD_CODE.A && Lagezeichen.ƒ.KEYBOARD_CODE.B:
-                console.log("Save");
-                await Lagezeichen.ƒS.Progress.save();
-                break;
-            case Lagezeichen.ƒ.KEYBOARD_CODE.C:
-                console.log("load");
-                await Lagezeichen.ƒS.Progress.load();
-                break;
-            case Lagezeichen.ƒ.KEYBOARD_CODE.I:
-                console.log("inventory");
-                await Lagezeichen.ƒS.Inventory.open();
-                break;
-            /* case ƒ.KEYBOARD_CODE.M:
-            if (hiddenMenu == false)
-            {}
-            
-            else if (hiddenMenu == true)
-            {}
-             */
+    //ITEMS
+    Lagezeichen.items = {
+        geschlossenesPaket: {
+            name: "Paket",
+            image: "Source/img/items/geschlossenesPaket.png",
+            description: "Ein ziemlich leichtes und verschlossenes Paket. Es wurde an Lustus von einem Unbekannten übergeben."
         }
-    }
-    Lagezeichen.middle_to_right = {
+    };
+    //ANIMATIONS
+    Lagezeichen.middleToRight = {
         start: { translation: Lagezeichen.ƒS.positions.bottomcenter },
         end: { translation: Lagezeichen.ƒS.positions.bottomright },
         duration: 2,
         playmode: Lagezeichen.ƒS.ANIMATION_PLAYMODE.PLAYONCE
     };
-    Lagezeichen.middle_to_left = {
+    Lagezeichen.rightTowardsMid = {
+        start: { translation: Lagezeichen.ƒS.positions.bottomcenter },
+        end: { translation: Lagezeichen.ƒS.positions.bottomcenter },
+        duration: 1,
+        playmode: Lagezeichen.ƒS.ANIMATION_PLAYMODE.PLAYONCE
+    };
+    Lagezeichen.midTowardsRight = {
+        start: { translation: Lagezeichen.ƒS.positions.bottomcenter },
+        end: { translation: Lagezeichen.ƒS.positions.bottomcenter },
+        duration: 1,
+        playmode: Lagezeichen.ƒS.ANIMATION_PLAYMODE.PLAYONCE
+    };
+    Lagezeichen.middleToLeft = {
         start: { translation: Lagezeichen.ƒS.positions.bottomcenter },
         end: { translation: Lagezeichen.ƒS.positions.bottomleft },
         duration: 2,
@@ -188,6 +188,31 @@ var Lagezeichen;
             gameMenu.close();
         }
     }
+    document.addEventListener("keydown", hndKeypress);
+    //let hiddenMenu: boolean = true;
+    async function hndKeypress(_event) {
+        switch (_event.code) {
+            case Lagezeichen.ƒ.KEYBOARD_CODE.A && Lagezeichen.ƒ.KEYBOARD_CODE.B:
+                console.log("Save");
+                await Lagezeichen.ƒS.Progress.save();
+                break;
+            case Lagezeichen.ƒ.KEYBOARD_CODE.C:
+                console.log("load");
+                await Lagezeichen.ƒS.Progress.load();
+                break;
+            case Lagezeichen.ƒ.KEYBOARD_CODE.I:
+                console.log("inventory");
+                await Lagezeichen.ƒS.Inventory.open();
+                break;
+            /* case ƒ.KEYBOARD_CODE.M:
+            if (hiddenMenu == false)
+            {}
+            
+            else if (hiddenMenu == true)
+            {}
+             */
+        }
+    }
     window.addEventListener("load", start);
     function start(_event) {
         gameMenu = Lagezeichen.ƒS.Menu.create(inGameMenu, buttonFunctions, "gameMenu");
@@ -215,26 +240,50 @@ var Lagezeichen;
         await Lagezeichen.ƒS.Sound.play(Lagezeichen.soundFiles.hammer, 0.1, false);
         await Lagezeichen.ƒS.Speech.tell(Lagezeichen.characters.Leter, "Ach mann es ist schon wieder nichts los.");
         await Lagezeichen.ƒS.Character.show(Lagezeichen.characters.Lob, Lagezeichen.characters.Lob.pose.smile, Lagezeichen.ƒS.positions.bottomleft);
-        await Lagezeichen.ƒS.update(1);
+        await Lagezeichen.ƒS.update(1.5);
         await Lagezeichen.ƒS.Speech.tell(Lagezeichen.characters.Lob, "Und die Ventilatoren schaffen es nicht die Hitze fernzuhalten. Ugghhh.");
         Lagezeichen.ƒS.Character.hideAll();
-        await Lagezeichen.ƒS.Speech.tell(Lagezeichen.characters.Lathilda, "LUSTUSSS! Wo bist du Lümmel denn schon wieder?! Dein Onkel braucht Hilfe beim Abladen. LOS du Faulpelz.");
+        await Lagezeichen.ƒS.update(2);
+        await Lagezeichen.ƒS.Speech.tell(Lagezeichen.characters.Lathilda, "LUSTUUUUSSS! Wo bist du Lümmel denn schon wieder?! Dein Onkel braucht Hilfe beim Abladen. LOS du Faulpelz.");
         await Lagezeichen.ƒS.Character.show(Lagezeichen.characters.Leter, Lagezeichen.characters.Leter.pose.grin, Lagezeichen.ƒS.positions.bottomright);
         await Lagezeichen.ƒS.update(2);
-        await Lagezeichen.ƒS.Speech.tell(Lagezeichen.characters.Leter, "Au wei, Tante Lathilda hat wieder Arbeit.. Na dann viel Spass Pumelchen.");
+        await Lagezeichen.ƒS.Speech.tell(Lagezeichen.characters.Leter, "Au wei, Tante Lathilda hat wieder Arbeit. Na dann viel Spass Pumelchen.");
         await Lagezeichen.ƒS.Character.show(Lagezeichen.characters.Lustus, Lagezeichen.characters.Lustus.pose.normal, Lagezeichen.ƒS.positions.bottomcenter);
         await Lagezeichen.ƒS.update(2);
-        await Lagezeichen.ƒS.Speech.tell(Lagezeichen.characters.Lustus, "Nicht schon wieder. Ich geh mal raus Jungs... ihr kennt es ja.");
-        await Lagezeichen.ƒS.Character.animate(Lagezeichen.characters.Lustus, Lagezeichen.characters.Lustus.pose.normal, Lagezeichen.middle_to_left);
-        await Lagezeichen.ƒS.update(0);
+        await Lagezeichen.ƒS.Speech.tell(Lagezeichen.characters.Lustus, "Nicht schon wieder.");
+        await Lagezeichen.ƒS.Speech.tell(Lagezeichen.characters.Lustus, "Ich geh mal raus Jungs... ihr kennt es ja.");
+        await Lagezeichen.ƒS.Character.animate(Lagezeichen.characters.Lustus, Lagezeichen.characters.Lustus.pose.normal, Lagezeichen.middleToLeft);
+        await Lagezeichen.ƒS.update(2);
+        Lagezeichen.ƒS.Character.hideAll();
+        await Lagezeichen.ƒS.Location.show(Lagezeichen.locations.BS);
+        await Lagezeichen.ƒS.update(1);
         await Lagezeichen.ƒS.Location.show(Lagezeichen.locations.Schrottplatz);
         await Lagezeichen.ƒS.Character.show(Lagezeichen.characters.Lustus, Lagezeichen.characters.Lustus.pose.normal, Lagezeichen.ƒS.positions.bottomcenter);
         await Lagezeichen.ƒS.update(2);
         await Lagezeichen.ƒS.Speech.tell(Lagezeichen.characters.Lustus, "Also was soll abgeladen werden? Hat Onkel Litus wieder irgendwas angeschleppt?");
         await Lagezeichen.ƒS.Character.show(Lagezeichen.characters.Lathilda, Lagezeichen.characters.Lathilda.pose.normal, Lagezeichen.ƒS.positions.bottomleft);
         await Lagezeichen.ƒS.update(2);
-        await Lagezeichen.ƒS.Speech.tell(Lagezeichen.characters.Lathilda, "Na nun steh nicht Fual rum alles was da so rumliegt muss runter vom Lastwagen. Falls was zu schwer ist, lass es stehen Latrick und Leneth wissen auch BEscheid und machen die übrigen Sachen.");
+        await Lagezeichen.ƒS.Speech.tell(Lagezeichen.characters.Lathilda, "Na nun steh nicht faul rum. Alles was da so rumliegt muss runter vom Lastwagen. Falls was zu schwer ist, lass es stehen. Latrick und Leneth wissen auch Bescheid und machen die übrigen Sachen.");
         await Lagezeichen.ƒS.Speech.tell(Lagezeichen.characters.Lustus, "Ist gut Tante Lathilda. Ich stell die Sachen dann neben dem Schuppen ab.");
+        await Lagezeichen.ƒS.Character.hideAll();
+        await Lagezeichen.ƒS.Location.show(Lagezeichen.locations.BS);
+        await Lagezeichen.ƒS.update(1);
+        await Lagezeichen.ƒS.Speech.tell(Lagezeichen.characters.Narrator, "Eine kurze Zeit später.");
+        await Lagezeichen.ƒS.Speech.tell(Lagezeichen.characters.Lustus, "Puhhh warum muss es auch so verdammt heiß sein.");
+        await Lagezeichen.ƒS.Character.show(Lagezeichen.characters.Deliveryboy, Lagezeichen.characters.Deliveryboy.pose.normal, Lagezeichen.ƒS.positions.bottomright);
+        await Lagezeichen.ƒS.update(2);
+        await Lagezeichen.ƒS.Character.animate(Lagezeichen.characters.Deliveryboy, Lagezeichen.characters.Deliveryboy.pose.normal, Lagezeichen.rightTowardsMid);
+        await Lagezeichen.ƒS.update(2);
+        await Lagezeichen.ƒS.Speech.tell(Lagezeichen.characters.Lustus, "Hey, was soll das? Was ist in der Box?");
+        await Lagezeichen.ƒS.Character.animate(Lagezeichen.characters.Deliveryboy, Lagezeichen.characters.Deliveryboy.pose.normal, Lagezeichen.midTowardsRight);
+        await Lagezeichen.ƒS.update();
+        await Lagezeichen.ƒS.Character.hide(Lagezeichen.characters.Deliveryboy);
+        await Lagezeichen.ƒS.Speech.tell(Lagezeichen.characters.Lustus, "HE bleib hier was ist das??!!");
+        await Lagezeichen.ƒS.Speech.tell(Lagezeichen.characters.Lustus, "Weg ist er... komisch.. Bringt mir einen Karton und geht einfach wieder.");
+        Lagezeichen.ƒS.Inventory.add(Lagezeichen.items.geschlossenesPaket);
+        await Lagezeichen.ƒS.Speech.tell(Lagezeichen.characters.Lustus, "Hmm zum Glück ist der Lastwagen fast fertig abegeladen. Ich bring mal das Packet in die Zentrale. Mal sehen was Lob und Leter dazu sagen.");
+        await Lagezeichen.ƒS.Location.show(Lagezeichen.locations.Wohnwagen);
+        await Lagezeichen.ƒS.update(0.8);
     }
     Lagezeichen.ErsteScene = ErsteScene;
 })(Lagezeichen || (Lagezeichen = {}));

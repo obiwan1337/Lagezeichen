@@ -29,6 +29,10 @@ declare namespace Lagezeichen {
             name: string;
             background: string;
         };
+        BS: {
+            name: string;
+            background: string;
+        };
     };
     let sound: {
         backgroundtheme: string;
@@ -42,6 +46,13 @@ declare namespace Lagezeichen {
     let characters: {
         Narrator: {
             name: string;
+        };
+        Deliveryboy: {
+            name: string;
+            origin: ƒ.ORIGIN2D;
+            pose: {
+                normal: string;
+            };
         };
         Lustus: {
             name: string;
@@ -72,18 +83,11 @@ declare namespace Lagezeichen {
             name: string;
             origin: ƒ.ORIGIN2D;
             pose: {
+                normal: string;
                 angry: string;
-                angry2: string;
                 happy: string;
-                happy2: string;
-                confident: string;
-                confident2: string;
-                sad: string;
-                sad2: string;
                 smile: string;
-                smile2: string;
                 surprised: string;
-                surprised2: string;
             };
         };
         Lathilda: {
@@ -94,8 +98,17 @@ declare namespace Lagezeichen {
             };
         };
     };
-    let middle_to_right: ƒS.AnimationDefinition;
-    let middle_to_left: ƒS.AnimationDefinition;
+    let items: {
+        geschlossenesPaket: {
+            name: string;
+            image: string;
+            description: string;
+        };
+    };
+    let middleToRight: ƒS.AnimationDefinition;
+    let rightTowardsMid: ƒS.AnimationDefinition;
+    let midTowardsRight: ƒS.AnimationDefinition;
+    let middleToLeft: ƒS.AnimationDefinition;
     let dataForSave: {
         state: {
             a: number;
