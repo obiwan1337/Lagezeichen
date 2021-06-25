@@ -25,11 +25,19 @@ declare namespace Lagezeichen {
             name: string;
             background: string;
         };
+        Lustus_room: {
+            name: string;
+            background: string;
+        };
         chinatown: {
             name: string;
             background: string;
         };
         BS: {
+            name: string;
+            background: string;
+        };
+        BadEnd: {
             name: string;
             background: string;
         };
@@ -71,12 +79,9 @@ declare namespace Lagezeichen {
             pose: {
                 normal: string;
                 smile: string;
-                upset: string;
-                grin: string;
-                laugh: string;
-                bored: string;
-                nerveous: string;
-                away: string;
+                angry: string;
+                happy: string;
+                surprised: string;
             };
         };
         Lob: {
@@ -119,4 +124,7 @@ declare namespace Lagezeichen {
 }
 declare namespace Lagezeichen {
     function ErsteScene(): ƒS.SceneReturn;
+    function firstBadEnd(): ƒS.SceneReturn;
+    function firstGoodDecission(): ƒS.SceneReturn;
+    function visit_Lustus(): ƒS.SceneReturn;
 }
