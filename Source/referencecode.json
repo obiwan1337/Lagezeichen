@@ -5,7 +5,8 @@ let animation2: ƒS.AnimationDefinition = {
     playmode: ƒS.ANIMATION_PLAYMODE.PLAYONCE
   };
 
-
+  let lob_smile = ƒS.Character.show(characters.Lob, characters.Lob.pose.smile, ƒS.positions.bottomleft);
+ 
 
   ƒS.Speech.hide();
   await ƒS.Location.show(locations.bench);

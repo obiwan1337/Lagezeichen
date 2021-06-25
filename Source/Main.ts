@@ -26,7 +26,11 @@ namespace Lagezeichen {
     },
     locky_beach: {
       name: "Locky Beach",
-      background: "Source/img/background/locky beach.jpg"
+      background: "Source/img/background/locky_beach.jpg"
+    },
+    Lustus_room: {
+      name: "Lustus Zimmer",
+      background: "Source/img/background/Lusus_zimmer.jpg"
     },
     chinatown: {
       name: "China Town",
@@ -35,6 +39,10 @@ namespace Lagezeichen {
     BS: {
       name: "",
       background: "Source/img/background/blackscreen.jpg"
+    },
+    BadEnd: {
+      name: "",
+      background: "Source/imgbackground/BadEnd.png"
     }
   };
   //Sounds
@@ -74,14 +82,11 @@ namespace Lagezeichen {
       name: "Leter Lhaw",
       origin: ƒS.ORIGIN.BOTTOMRIGHT,
       pose: {
-        normal: "Source/img/chars/Leter/Leter_N.png",
+        normal: "Source/img/chars/Leter/Leter.png",
         smile: "Source/img/chars/Leter/Leter_smile.png",
-        upset: "Source/img/chars/Leter/Leter_upset.png",
-        grin: "Source/img/chars/Leter/Leter_grin.png",
-        laugh: "Source/img/chars/Leter/Leter_laugh.png",
-        bored: "Source/img/chars/Leter/Leter_bore.png",
-        nerveous: "Source/img/chars/Leter/Leter_nerveous.png",
-        away: "Source/img/chars/Leter/Leter_away.png"
+        angry: "Source/img/chars/Leter/Leter_angry.png",
+       happy: "Source/img/chars/Leter/Leter_happy.png",
+        surprised: "Source/img/chars/Leter/Leter_surprised.png"
       }
     },
     Lob: {
