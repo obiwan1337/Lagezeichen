@@ -42,7 +42,7 @@ namespace Lagezeichen {
     },
     BadEnd: {
       name: "",
-      background: "Source/imgbackground/BadEnd.png"
+      background: "Source/imgbackground/badEnd.png"
     }
   };
   //Sounds
@@ -50,10 +50,15 @@ namespace Lagezeichen {
     backgroundtheme: "Source/music/noise/saw.mp3"
   };
   export let soundFiles = {
+    distantsaw: "Source/music/noise/distantsaw.mp3",
+    distantsaw2: "Source/music/noise/distantsaw2.mp3",
     saw: "Source/music/noise/saw.mp3",
     chainsaw: "Source/music/noise/chainsaw.ogg",
     jackhammer: "Source/music/noise/jackhammer.mp3",
-    hammer: "Source/music/noise/hammer.mp3"
+    hammer: "Source/music/noise/hammer.mp3",
+    distanthammer: "Source/music/noise/distanthammer.mp3",
+    müllpresse: "Source/music/noise/müllpresse.mp3"
+
   };
   //define characteres
   export let characters = {
@@ -64,7 +69,7 @@ namespace Lagezeichen {
       name: "unbekannt",
       origin: ƒS.ORIGIN.BOTTOMRIGHT,
       pose: {
-        normal: "Source/img/chars/placeholder/ph.png"
+        normal: "Source/img/chars/placeholder/phboy.png"
       }
     },
     Lustus: {
@@ -75,7 +80,7 @@ namespace Lagezeichen {
         smile: "Source/img/chars/Lustus/Lustus_smile.png",
         happy: "Source/img/chars/Lustus/Lustus_happy.png",
         angry: "Source/img/chars/Lustus/Lustus_angry.png",
-        surprised: "Source/img/chars/Lustus/Lustus_surrprised.png"
+        surprised: "Source/img/chars/Lustus/Lustus_surprised.png"
       }
     },
     Leter: {
@@ -85,7 +90,7 @@ namespace Lagezeichen {
         normal: "Source/img/chars/Leter/Leter.png",
         smile: "Source/img/chars/Leter/Leter_smile.png",
         angry: "Source/img/chars/Leter/Leter_angry.png",
-       happy: "Source/img/chars/Leter/Leter_happy.png",
+        happy: "Source/img/chars/Leter/Leter_happy.png",
         surprised: "Source/img/chars/Leter/Leter_surprised.png"
       }
     },
@@ -103,9 +108,10 @@ namespace Lagezeichen {
     },
     Lathilda: {
       name: "Tante Lathilda",
-      origin: ƒS.ORIGIN.BOTTOMCENTER,
+      origin: ƒS.ORIGIN.BOTTOMLEFT,
       pose: {
-        normal: "Source/img/chars/Lathilda/Lathilda_N.png"
+        //normal: "Source/img/chars/Lathilda/Lathilda_N.png"
+        normal: "Source/img/chars/placeholder/phL.png"
       }
     }
 
@@ -122,30 +128,46 @@ namespace Lagezeichen {
   //ANIMATIONS
 
 
-  export let middleToRight: ƒS.AnimationDefinition = {
-    start: { translation: ƒS.positions.bottomcenter },
-    end: { translation: ƒS.positions.bottomright },
-    duration: 2,
-    playmode: ƒS.ANIMATION_PLAYMODE.PLAYONCE
-  };
-  export let rightTowardsMid: ƒS.AnimationDefinition = {
-    start: { translation: ƒS.positions.bottomcenter },
-    end: { translation: ƒS.positions.bottomcenter },
-    duration: 1,
-    playmode: ƒS.ANIMATION_PLAYMODE.PLAYONCE
-  };
-  export let midTowardsRight: ƒS.AnimationDefinition = {
-    start: { translation: ƒS.positions.bottomcenter },
-    end: { translation: ƒS.positions.bottomcenter },
-    duration: 1,
-    playmode: ƒS.ANIMATION_PLAYMODE.PLAYONCE
-  };
-  export let middleToLeft: ƒS.AnimationDefinition = {
-    start: { translation: ƒS.positions.bottomcenter },
-    end: { translation: ƒS.positions.bottomleft },
-    duration: 2,
-    playmode: ƒS.ANIMATION_PLAYMODE.PLAYONCE
-  };
+  export function middleToRight(): ƒS.AnimationDefinition {
+    return {
+      start: { translation: ƒS.positions.bottomcenter },
+      end: { translation: ƒS.positions.bottomright },
+      duration: 1,
+      playmode: ƒS.ANIMATION_PLAYMODE.PLAYONCE
+    };
+  }
+  export function rightTowardsMid(): ƒS.AnimationDefinition {
+    return {
+      start: { translation: ƒS.positions.bottomcenter },
+      end: { translation: ƒS.positions.bottomcenter },
+      duration: 1,
+      playmode: ƒS.ANIMATION_PLAYMODE.PLAYONCE
+    };
+  }
+  export function rightTowardsLeft(): ƒS.AnimationDefinition {
+    return {
+      start: { translation: ƒS.positions.bottomright },
+      end: { translation: ƒS.positions.bottomleft},
+      duration: 2,
+      playmode: ƒS.ANIMATION_PLAYMODE.PLAYONCE
+    };
+  }
+  export function midTowardsRight(): ƒS.AnimationDefinition {
+    return {
+      start: { translation: ƒS.positions.bottomcenter },
+      end: { translation: ƒS.positions.bottomcenter },
+      duration: 1,
+      playmode: ƒS.ANIMATION_PLAYMODE.PLAYONCE
+    };
+  }
+  export function middleToLeft(): ƒS.AnimationDefinition {
+    return {
+      start: { translation: ƒS.positions.bottomcenter },
+      end: { translation: ƒS.positions.bottomleft },
+      duration: 1,
+      playmode: ƒS.ANIMATION_PLAYMODE.PLAYONCE
+    };
+  }
   export let dataForSave = {
     state: {
       a: 50
@@ -154,7 +176,7 @@ namespace Lagezeichen {
   };
 
   //Menu Audio
-  let volume: number = 0.5;
+  /* let volume: number = 0.5;
   export function increaseVolume(): void {
     if (volume < 100)
       return;
@@ -166,6 +188,7 @@ namespace Lagezeichen {
       return;
     volume -= 0.08;
     ƒS.Sound.setVolume(sound.backgroundtheme, volume);
+    
   }
   //Menu Elements
   let inGameMenu = {
@@ -198,11 +221,11 @@ namespace Lagezeichen {
     else if (_option == inGameMenu.close) {
       gameMenu.close();
     }
-  }
-  document.addEventListener("keydown", hndKeypress);
+  } */
+  //document.addEventListener("keydown", hndKeypress);
 
-  //let hiddenMenu: boolean = true;
-  async function hndKeypress(_event: KeyboardEvent): Promise<void> {
+  // let hiddenMenu: boolean = true;
+  /* async function hndKeypress(_event: KeyboardEvent): Promise<void> {
     switch (_event.code) {
       case ƒ.KEYBOARD_CODE.A && ƒ.KEYBOARD_CODE.B:
         console.log("Save");
@@ -216,28 +239,31 @@ namespace Lagezeichen {
         console.log("inventory");
         await ƒS.Inventory.open();
         break;
-      /* case ƒ.KEYBOARD_CODE.M:
-      if (hiddenMenu == false)
-      {}
-      
-      else if (hiddenMenu == true)
-      {}
-       */
+      case ƒ.KEYBOARD_CODE.M:
+        if (hiddenMenu == false) { gameMenu.close(); }
+
+        else if (hiddenMenu == true) { gameMenu.open(); }
+
 
     }
 
-  }
+  } */
   window.addEventListener("load", start);
 
   function start(_event: Event): void {
 
-    gameMenu = ƒS.Menu.create(inGameMenu, buttonFunctions, "gameMenu");
+    //gameMenu = ƒS.Menu.create(inGameMenu, buttonFunctions, "gameMenu");
+
     // define the sequence of scenes, each scene as an object with a reference to the scene-function, a name and optionally an id and an id to continue the story with
     let scenes: ƒS.Scenes = [
-
+      //{ scene: startScreen, name: "Startscreen" }
       { scene: ErsteScene, name: "Erste Szene" }
-      //{ scene: LustusZimmer1, name: "Bei Lustus im Zimmer" }
-
+      //{ scene: firstBadEnd, name: "BadEnd1" },
+      //{ scene: visitLustus, name: "Geh zuerst zu Lustus" },
+      //{ scene: visitHQ, name: "Direkt in die Zentrale" },
+      //{ scene: getRidOfIt, name: "Alles entsorgen (schon wieder)" }
+      //{ scene: firstGoodDecission, name: "Erste gute Entscheidung"}
+      //{ scene: endOfDemo, name: "eod"}
     ];
     let uiElement: HTMLElement = document.querySelector("[type=interface]");
     dataForSave.state = ƒS.Progress.setData(dataForSave.state, uiElement);

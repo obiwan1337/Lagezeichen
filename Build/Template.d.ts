@@ -46,10 +46,14 @@ declare namespace Lagezeichen {
         backgroundtheme: string;
     };
     let soundFiles: {
+        distantsaw: string;
+        distantsaw2: string;
         saw: string;
         chainsaw: string;
         jackhammer: string;
         hammer: string;
+        distanthammer: string;
+        müllpresse: string;
     };
     let characters: {
         Narrator: {
@@ -110,21 +114,24 @@ declare namespace Lagezeichen {
             description: string;
         };
     };
-    let middleToRight: ƒS.AnimationDefinition;
-    let rightTowardsMid: ƒS.AnimationDefinition;
-    let midTowardsRight: ƒS.AnimationDefinition;
-    let middleToLeft: ƒS.AnimationDefinition;
+    function middleToRight(): ƒS.AnimationDefinition;
+    function rightTowardsMid(): ƒS.AnimationDefinition;
+    function rightTowardsLeft(): ƒS.AnimationDefinition;
+    function midTowardsRight(): ƒS.AnimationDefinition;
+    function middleToLeft(): ƒS.AnimationDefinition;
     let dataForSave: {
         state: {
             a: number;
         };
     };
-    function increaseVolume(): void;
-    function decreaseVolume(): void;
 }
 declare namespace Lagezeichen {
+    function startScreen(): ƒS.SceneReturn;
     function ErsteScene(): ƒS.SceneReturn;
     function firstBadEnd(): ƒS.SceneReturn;
     function firstGoodDecission(): ƒS.SceneReturn;
-    function visit_Lustus(): ƒS.SceneReturn;
+    function visitLustus(): ƒS.SceneReturn;
+    function visitHQ(): ƒS.SceneReturn;
+    function getRidOfIt(): ƒS.SceneReturn;
+    function endOfDemo(): ƒS.SceneReturn;
 }

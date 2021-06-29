@@ -1,11 +1,12 @@
-html, body {
+html,
+body {
   width: 100vw;
   height: 100vh;
   margin: 0px;
   padding: 0px;
   background-color: black;
   overflow: hidden;
-  font-family:'Gill Sans', 'Gill Sans MT', sans-serif;
+  font-family: 'Gill Sans', 'Gill Sans MT', sans-serif;
 }
 
 scene {
@@ -18,7 +19,7 @@ scene {
 canvas {
   width: 100%;
   height: 100%;
-} 
+}
 
 /* speech bar */
 speech {
@@ -36,14 +37,27 @@ speech>name {
   display: block;
   color: rgb(98, 113, 161);
   margin-bottom: 0px;
-} 
+}
 
 speech>content {
   color: rgb(203, 253, 255);
 }
+/* decision and desicion buttons*/
+.Selection {
+  
+  border-radius: 10px;
+ 
+}
+.Selection>button {
+  border-radius: 3px;
+ background-color: mintcream;
+ 
+}
 
 meter::-webkit-meter-optimum-value {
-  background-image: linear-gradient(
-    
-  )
+  background-image: linear-gradient()
+}
+
+.gameMenu {
+  visibility: hidden;
 }
