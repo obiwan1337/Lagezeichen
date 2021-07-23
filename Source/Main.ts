@@ -30,7 +30,7 @@ namespace Lagezeichen {
     },
     Lustus_room: {
       name: "Lustus Zimmer",
-      background: "Source/img/background/lususRoom.jpg"
+      background: "Source/img/background/lustusRoom.jpg"
     },
 
     BS: {
@@ -312,7 +312,7 @@ namespace Lagezeichen {
     let scenes: ƒS.Scenes = [
       //{ scene: TestScene, name: "TEST" }
       { scene: ErsteScene, name: "Erste Szene" },
-      { scene: firstBadEnd, name: "BadEnd1" },
+     /*  { scene: firstBadEnd, name: "BadEnd1" },
       { scene: firstGoodDecission, name: "FirstGoodDecission" },
       { scene: visitLustus, name: "Geh zuerst zu Lustus" },
 
@@ -328,7 +328,7 @@ namespace Lagezeichen {
       { scene: abklappernFahren, name: "Fahre an den Chemiekonzernen vorbei" },
       { scene: Abgabe, name: "gib den Karton bei Lotter ab" },
       { scene: überredenBadEnd, name: "Kein Glück bei der Befragung" },
-      { scene: überredenGoodEnd, name: "Glück beim Verhör" }
+      { scene: überredenGoodEnd, name: "Glück beim Verhör" } */
     ];
     let uiElement: HTMLElement = document.querySelector("[type=interface]");
     dataForSave.state = ƒS.Progress.setData(dataForSave.state, uiElement);

@@ -31,7 +31,7 @@ var Lagezeichen;
         },
         Lustus_room: {
             name: "Lustus Zimmer",
-            background: "Source/img/background/lususRoom.jpg"
+            background: "Source/img/background/lustusRoom.jpg"
         },
         BS: {
             name: "",
@@ -309,22 +309,23 @@ var Lagezeichen;
         let scenes = [
             //{ scene: TestScene, name: "TEST" }
             { scene: Lagezeichen.ErsteScene, name: "Erste Szene" },
-            { scene: Lagezeichen.firstBadEnd, name: "BadEnd1" },
-            { scene: Lagezeichen.firstGoodDecission, name: "FirstGoodDecission" },
-            { scene: Lagezeichen.visitLustus, name: "Geh zuerst zu Lustus" },
-            { scene: Lagezeichen.visitHQ, name: "Direkt in die Zentrale" },
-            { scene: Lagezeichen.getRidOfIt, name: "Alles entsorgen (schon wieder)" },
-            { scene: Lagezeichen.firstGoodDecission, name: "Erste gute Entscheidung" },
-            { scene: Lagezeichen.demoEnds, name: "eod" },
-            { scene: Lagezeichen.goToHqAfterLustusVisit, name: "Die Zentrale wartet." },
-            { scene: Lagezeichen.typSuchen, name: "Suche den Übeltäter" },
-            { scene: Lagezeichen.ersterAnrufBeiLotter, name: "Erster Anruf bei Lotter" },
-            { scene: Lagezeichen.phantombildErfragen, name: "Frage Lustus nach einem Bild" },
-            { scene: Lagezeichen.notTheBestEnd, name: "nicht das Beste aber keine Katastrophe" },
-            { scene: Lagezeichen.abklappernFahren, name: "Fahre an den Chemiekonzernen vorbei" },
-            { scene: Lagezeichen.Abgabe, name: "gib den Karton bei Lotter ab" },
-            { scene: Lagezeichen.überredenBadEnd, name: "Kein Glück bei der Befragung" },
-            { scene: Lagezeichen.überredenGoodEnd, name: "Glück beim Verhör" }
+            /*  { scene: firstBadEnd, name: "BadEnd1" },
+             { scene: firstGoodDecission, name: "FirstGoodDecission" },
+             { scene: visitLustus, name: "Geh zuerst zu Lustus" },
+       
+             { scene: visitHQ, name: "Direkt in die Zentrale" },
+             { scene: getRidOfIt, name: "Alles entsorgen (schon wieder)" },
+             { scene: firstGoodDecission, name: "Erste gute Entscheidung" },
+             { scene: demoEnds, name: "eod" },
+             { scene: goToHqAfterLustusVisit, name: "Die Zentrale wartet." },
+             { scene: typSuchen, name: "Suche den Übeltäter" },
+             { scene: ersterAnrufBeiLotter, name: "Erster Anruf bei Lotter" },
+             { scene: phantombildErfragen, name: "Frage Lustus nach einem Bild" },
+             { scene: notTheBestEnd, name: "nicht das Beste aber keine Katastrophe" },
+             { scene: abklappernFahren, name: "Fahre an den Chemiekonzernen vorbei" },
+             { scene: Abgabe, name: "gib den Karton bei Lotter ab" },
+             { scene: überredenBadEnd, name: "Kein Glück bei der Befragung" },
+             { scene: überredenGoodEnd, name: "Glück beim Verhör" } */
         ];
         let uiElement = document.querySelector("[type=interface]");
         Lagezeichen.dataForSave.state = Lagezeichen.ƒS.Progress.setData(Lagezeichen.dataForSave.state, uiElement);
@@ -383,7 +384,7 @@ var Lagezeichen;
         await Lagezeichen.ƒS.Speech.tell(Lagezeichen.characters.Narrator, "Dies ist ein frei erfundenes Spiel. Ähnlichkeiten mit realen Personen oder Orten sind rein zufällig. Das Spiel ist eine Demo und nicht vollendet. Viel Spaß beim Lesen.");
         await Lagezeichen.ƒS.Location.show(Lagezeichen.locations.Wohnwagen);
         Lagezeichen.ƒS.Sound.play(Lagezeichen.soundFiles.distantsaw, 0.5, false);
-        Lagezeichen.ƒS.Sound.play(Lagezeichen.soundFiles.radiomusic, 0.05, false);
+        Lagezeichen.ƒS.Sound.play(Lagezeichen.soundFiles.radiomusic, 0.1, false);
         await Lagezeichen.ƒS.update(2);
         lobNormal();
         await Lagezeichen.ƒS.Character.show(Lagezeichen.characters.Leter, Lagezeichen.characters.Leter.pose.normal, Lagezeichen.ƒS.positions.bottomright);
@@ -438,6 +439,7 @@ var Lagezeichen;
         await Lagezeichen.ƒS.update(2);
         await Lagezeichen.ƒS.Speech.tell(Lagezeichen.characters.Lustus, "Hey, was soll das? Was ist in der Box?");
         //await ƒS.Character.animate(characters.Deliveryboy, characters.Deliveryboy.pose.normal, midTowardsRight());
+        await Lagezeichen.ƒS.Sound.fade(Lagezeichen.soundFiles.jackhammer, 0, 2, false);
         await Lagezeichen.ƒS.Character.animate(Lagezeichen.characters.Deliveryboy, Lagezeichen.characters.Deliveryboy.pose.normal, Lagezeichen.rightToOutside());
         await Lagezeichen.ƒS.Sound.fade(Lagezeichen.soundFiles.walkingSound, 0, 3, false);
         await Lagezeichen.ƒS.Speech.tell(Lagezeichen.characters.Lustus, "HEE bleib hier. Was ist das??!!");
@@ -452,7 +454,7 @@ var Lagezeichen;
         await Lagezeichen.ƒS.update(2);
         await Lagezeichen.ƒS.Character.show(Lagezeichen.characters.Lustus, Lagezeichen.characters.Lustus.pose.normal, Lagezeichen.ƒS.positions.bottomcenter);
         await Lagezeichen.ƒS.update(0);
-        Lagezeichen.ƒS.Sound.play(Lagezeichen.soundFiles.distantsaw2, 0.2, false);
+        Lagezeichen.ƒS.Sound.play(Lagezeichen.soundFiles.distantsaw2, 0.5, false);
         await Lagezeichen.ƒS.Speech.tell(Lagezeichen.characters.Lustus, "Endlich fertig mit dem Krempel. Ham wir noch Limo?");
         await Lagezeichen.ƒS.Character.show(Lagezeichen.characters.Lob, Lagezeichen.characters.Lob.pose.normal, Lagezeichen.ƒS.positions.bottomleft);
         Lagezeichen.ƒS.update(0);
@@ -524,6 +526,7 @@ var Lagezeichen;
         await Lagezeichen.ƒS.Speech.tell(Lagezeichen.characters.Lob, "Also wirklich, Leter. Wieder mal keine Ahnung von nichts, oder?");
         await Lagezeichen.ƒS.Speech.tell(Lagezeichen.characters.Lob, "Wenn das Ding nun aber nicht von Linny Loris ist und wirklich ein Auftrag für uns sein soll?");
         await Lagezeichen.ƒS.Speech.tell(Lagezeichen.characters.Lob, "Wir untersuchen das Glas und den Karton auf jeden Fall, bevor wir irgendwas entsorgen.");
+        await Lagezeichen.ƒS.Character.hide(Lagezeichen.characters.Lustus);
         Lagezeichen.ƒS.Sound.play(Lagezeichen.soundFiles.distanthammer, 0.4, false);
         await Lagezeichen.ƒS.Character.show(Lagezeichen.characters.Lustus, Lagezeichen.characters.Lustus.pose.smile, Lagezeichen.ƒS.positions.bottomcenter);
         Lagezeichen.ƒS.update(2);
@@ -592,7 +595,6 @@ var Lagezeichen;
         await Lagezeichen.ƒS.Speech.tell(Lagezeichen.characters.Leter, "Ist ja gut, ich komm doch mit. Aber es ist trotzdem fahrlässig, wenn er nun was hat, das wir auch bekommen.");
         await Lagezeichen.ƒS.Speech.tell(Lagezeichen.characters.Lob, "Und genau darüber solltest du dir keine Gedanken machen. Wenn es eine Grippe war, dann kann dein Körper damit umgehen.");
         Lagezeichen.ƒS.Character.hideAll();
-        await Lagezeichen.ƒS.Sound.fade(Lagezeichen.soundFiles.HelicopterFlyBy, 0, 2, false);
         await Lagezeichen.ƒS.Location.show(Lagezeichen.locations.Lustus_room);
         leterNormal();
         lobNormal();
@@ -610,7 +612,6 @@ var Lagezeichen;
         await Lagezeichen.ƒS.Speech.tell(Lagezeichen.characters.Leter, "Na super. Wir machen uns Sorgen, sehen nach ob du noch lebst und werden angeschnauzt. Jetzt weisst du, warum ich nicht herkommen wollte, Lob.");
         await Lagezeichen.ƒS.Speech.tell(Lagezeichen.characters.Lob, "Jetzt macht mal beide halblang. Lustus, dir gehts beschissen, aber uns musst du deswegen nicht anranzen. Du auch, Leter.");
         await Lagezeichen.ƒS.Speech.tell(Lagezeichen.characters.Lob, "Ruh dich gut aus, Lustus, wir schauen mal in der Zentrale nach, was so neues los ist. Komm, Leter.");
-        Lagezeichen.ƒS.Character.hide(Lagezeichen.characters.Lustus);
         lustusNormal();
         upd();
         await Lagezeichen.ƒS.Speech.tell(Lagezeichen.characters.Lustus, "Na, jetzt wartet doch einen kurzen Moment. Ihr wollt also den Karton und das Glas untersuchen? Das Glas hatte ich schon untersucht, nachdem wir es bekommen hatten.");
@@ -624,6 +625,7 @@ var Lagezeichen;
         await Lagezeichen.ƒS.Speech.tell(Lagezeichen.characters.Leter, "Ok, dann puder ich den Karton mal ab. Ruh dich gut aus, Lustus.");
         Lagezeichen.ƒS.Character.hideAll();
         await Lagezeichen.ƒS.update(0);
+        await Lagezeichen.ƒS.Sound.fade(Lagezeichen.soundFiles.HelicopterFlyBy, 0, 2, false);
         goToHqAfterLustusVisit();
     }
     Lagezeichen.visitLustus = visitLustus;
@@ -810,7 +812,7 @@ var Lagezeichen;
         leterNormal();
         lobNormal();
         await Lagezeichen.ƒS.update(0);
-        Lagezeichen.ƒS.Sound.play(Lagezeichen.soundFiles.radiomusic, 0.3, false);
+        Lagezeichen.ƒS.Sound.play(Lagezeichen.soundFiles.radiomusic, 0.1, false);
         await Lagezeichen.ƒS.Speech.tell(Lagezeichen.characters.Lob, "Stimmt eigentlich. Einen Moment, ich frage Lustus, ob er uns eine Zeichnung von dem Dude anfertigen kann.");
         await Lagezeichen.ƒS.Speech.tell(Lagezeichen.characters.Leter, "Hey! Was machst du da an dem Schrank? Lob, was suchst du denn schon wieder.");
         await Lagezeichen.ƒS.Speech.tell(Lagezeichen.characters.Lob, "Ich funk Lustus an. Wir haben extra ein Walkie Talkie in seinem Zimmer und der Zentrale.");
@@ -828,7 +830,7 @@ var Lagezeichen;
         upd();
         Lagezeichen.ƒS.Sound.play(Lagezeichen.soundFiles.rauschen, 1, false);
         await Lagezeichen.ƒS.Speech.tell(Lagezeichen.characters.Lob, "Kannst du eine Zeichnung der Person anfertigen? Leter und ich haben den ja noch nie gesehen. Eine Vorstellung würde da schon etwas helfen. Over.");
-        Lagezeichen.ƒS.Sound.play(Lagezeichen.soundFiles.distanthammer, 1, false);
+        Lagezeichen.ƒS.Sound.play(Lagezeichen.soundFiles.distanthammer, 0.3, false);
         await Lagezeichen.ƒS.Speech.tell(Lagezeichen.characters.Lustus, "Alles klar ihr zwei, ich versuch mich dran. Over.");
         await Lagezeichen.ƒS.Location.show(Lagezeichen.locations.BS);
         await Lagezeichen.ƒS.update(2);
@@ -859,8 +861,7 @@ var Lagezeichen;
         Lagezeichen.ƒS.Sound.fade(Lagezeichen.soundFiles.telefonBelegt, 0, 0, false);
         await Lagezeichen.ƒS.Speech.tell(Lagezeichen.characters.Lob, "Niemand im Büro. Dann wird er wohl noch unterwegs sein.");
         await Lagezeichen.ƒS.Speech.tell(Lagezeichen.characters.InspectorLotter, "Jungs? Lustus, Leter, Lob seid ihr da?");
-        Lagezeichen.ƒS.Character.hide(Lagezeichen.characters.Leter);
-        Lagezeichen.ƒS.Character.hide(Lagezeichen.characters.Lob);
+        await Lagezeichen.ƒS.Character.hideAll();
         leterSurprised();
         lobSurprised();
         upd();
@@ -869,21 +870,23 @@ var Lagezeichen;
         await Lagezeichen.ƒS.Character.animate(Lagezeichen.characters.Lob, Lagezeichen.characters.Lob.pose.normal, Lagezeichen.leftToOutside());
         await Lagezeichen.ƒS.update(0);
         await Lagezeichen.ƒS.Location.show(Lagezeichen.locations.Schrottplatz);
+        await Lagezeichen.ƒS.Character.hideAll();
         await Lagezeichen.ƒS.Character.show(Lagezeichen.characters.InspectorLotter, Lagezeichen.characters.InspectorLotter.pose.normal, Lagezeichen.ƒS.positionPercent(10, 100));
-        Lagezeichen.ƒS.Sound.play(Lagezeichen.soundFiles.distantsaw2, 1, false);
+        Lagezeichen.ƒS.Sound.play(Lagezeichen.soundFiles.distantsaw2, 0.8, false);
         await Lagezeichen.ƒS.Character.show(Lagezeichen.characters.Leter, Lagezeichen.characters.Leter.pose.normal, Lagezeichen.ƒS.positionPercent(45, 100));
         await Lagezeichen.ƒS.Character.show(Lagezeichen.characters.Lob, Lagezeichen.characters.Lob.pose.normal, Lagezeichen.ƒS.positionPercent(65, 100));
         await Lagezeichen.ƒS.Character.show(Lagezeichen.characters.Lustus, Lagezeichen.characters.Lustus.pose.normal, Lagezeichen.ƒS.positionPercent(85, 100));
         await Lagezeichen.ƒS.Speech.tell(Lagezeichen.characters.Lustus, "Inspector Lotter? Was bringt Sie her?");
         await Lagezeichen.ƒS.Speech.tell(Lagezeichen.characters.InspectorLotter, "Wir haben eine Zeugenaussage über einen Einbrecher aus dem Lorona Virus Laboratory. Der soll bei euch vorbeigeschaut haben.");
         await Lagezeichen.ƒS.Speech.tell(Lagezeichen.characters.Leter, "Meinen Sie den hier? Lustus hat einen Karton von dem bekommen und wir suchen den ebenfalls.");
-        await Lagezeichen.ƒS.Sound.fade(Lagezeichen.soundFiles.müllpresse, 0.5, 3, false);
-        Lagezeichen.ƒS.Speech.hide();
-        Lagezeichen.ƒS.Character.hideAll();
-        Lagezeichen.ƒS.Location.show(Lagezeichen.locations.BS);
-        Lagezeichen.ƒS.Character.show(Lagezeichen.characters.Phantom, Lagezeichen.characters.Phantom.pose.normal, Lagezeichen.ƒS.positions.bottomcenter);
-        Lagezeichen.ƒS.update(0);
-        Lagezeichen.ƒS.Speech.tell(Lagezeichen.characters.Narrator, "", true);
+        await Lagezeichen.ƒS.Sound.fade(Lagezeichen.soundFiles.müllpresse, 0, 3, false);
+        await Lagezeichen.ƒS.Speech.hide();
+        await Lagezeichen.ƒS.Character.hideAll();
+        upd();
+        await Lagezeichen.ƒS.Location.show(Lagezeichen.locations.BS);
+        await Lagezeichen.ƒS.Character.show(Lagezeichen.characters.Phantom, Lagezeichen.characters.Phantom.pose.normal, Lagezeichen.ƒS.positions.center);
+        await Lagezeichen.ƒS.update(0);
+        await Lagezeichen.ƒS.Speech.tell(Lagezeichen.characters.Narrator, "", true);
         await Lagezeichen.ƒS.Speech.tell(Lagezeichen.characters.InspectorLotter, "Zeig mal her Leter... Was ist das den für ein Gekritzel... hmm, aber doch, das hat Ähnlichkeit mit dem Beschriebenen");
         /* let phantomBild: string[] = ["< img src = 'Source/img/chars/placeholder/phPhantom.png' /> "
         ];
@@ -907,6 +910,7 @@ var Lagezeichen;
         } while (choice != flip.done);
         ƒS.Text.close();
      */
+        await Lagezeichen.ƒS.Speech.show();
         await Lagezeichen.ƒS.Character.show(Lagezeichen.characters.InspectorLotter, Lagezeichen.characters.InspectorLotter.pose.normal, Lagezeichen.ƒS.positionPercent(10, 100));
         await Lagezeichen.ƒS.Character.show(Lagezeichen.characters.Leter, Lagezeichen.characters.Leter.pose.normal, Lagezeichen.ƒS.positionPercent(45, 100));
         await Lagezeichen.ƒS.Character.show(Lagezeichen.characters.Lob, Lagezeichen.characters.Lob.pose.normal, Lagezeichen.ƒS.positionPercent(65, 100));
@@ -1027,7 +1031,7 @@ var Lagezeichen;
         await Lagezeichen.ƒS.Speech.tell(Lagezeichen.characters.Lob, "Na dann, klingeln wir direkt mal Lotter durch.");
         Lagezeichen.ƒS.Sound.play(Lagezeichen.soundFiles.telefonWahl, 0.4, false);
         Lagezeichen.ƒS.Sound.play(Lagezeichen.soundFiles.telefonPiepTon, 0.1, false);
-        Lagezeichen.ƒS.Sound.fade(Lagezeichen.soundFiles.telefonPiepTon, 0, 0, false);
+        await Lagezeichen.ƒS.Sound.fade(Lagezeichen.soundFiles.telefonPiepTon, 0, 0, false);
         await Lagezeichen.ƒS.Speech.tell(Lagezeichen.characters.Lob, "Ja, guten Tag, Inspector Lotter, Lob hier. Uns ist aufgefallen, Sie waren vorhin bei einem Chemiekonzern. Was ist denn dort passiert? Wie ein Sicherheitsbruch im Labor, aber nichts gestohlen?");
         await Lagezeichen.ƒS.Speech.tell(Lagezeichen.characters.Lob, "Wir suchen gerade nach einer Person, die vermutlich was aus einem Labor entwendet hat.. Kurz nach dem ersten Kontakt war Lustus krank mit einer Art schnupfen und leichtem Fieber.");
         await Lagezeichen.ƒS.Speech.tell(Lagezeichen.characters.Leter, "Frag ihn doch, ob er den Mann mal nach dem Karton bei uns fragen kann. Wir haben ja auch einen Fingerabdruck gefunden im Karton. Das wird vermutlich reichen für einen Blöff.");
