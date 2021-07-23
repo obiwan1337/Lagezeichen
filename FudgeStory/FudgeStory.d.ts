@@ -237,6 +237,11 @@ declare namespace FudgeStory {
      */
     function getInput(_eventTypes: string[]): Promise<Event>;
     /**
+     * Returns a promise that resolves when the given key is pressed.
+     * Can be used with {@link Progress.defineSignal} as e.g. () => getKeypress(ƒ.KEYBOARD_CODE.SPACE)
+     */
+    function getKeypress(_code: ƒ.KEYBOARD_CODE): Promise<Event>;
+    /**
      * Standard positions
      */
     let positions: {
@@ -275,7 +280,7 @@ declare namespace FudgeStory {
         description: string;
         image: RequestInfo;
         static?: boolean;
-        handler: (_event: CustomEvent) => void;
+        handler?: (_event: CustomEvent) => void;
     }
     /**
      * Manages the inventory
@@ -289,6 +294,10 @@ declare namespace FudgeStory {
          */
         static add(_item: ItemDefinition): void;
         /**
+         * Adds an item to the inventory
+         */
+        static getAmount(_item: ItemDefinition): number;
+        /**
          * Opens the inventory and return a list of the names of consumed items when the inventory closes again
          */
         static open(): Promise<string[]>;
@@ -297,6 +306,8 @@ declare namespace FudgeStory {
          */
         static close(): void;
         private static hndUseItem;
+        private static replaceWhitespace;
+        private static getItemElement;
     }
 }
 declare namespace FudgeStory {

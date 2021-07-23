@@ -372,6 +372,22 @@ var FudgeStory;
     }
     FudgeStory.getInput = getInput;
     /**
+     * Returns a promise that resolves when the given key is pressed.
+     * Can be used with {@link Progress.defineSignal} as e.g. () => getKeypress(ƒ.KEYBOARD_CODE.SPACE)
+     */
+    async function getKeypress(_code) {
+        return new Promise((resolve) => {
+            let hndEvent = (_event) => {
+                if (_event.code == _code) {
+                    document.removeEventListener("keypress", hndEvent);
+                    resolve(_event);
+                }
+            };
+            document.addEventListener("keypress", hndEvent);
+        });
+    }
+    FudgeStory.getKeypress = getKeypress;
+    /**
      * Standard positions
      */
     FudgeStory.positions = {
@@ -411,14 +427,14 @@ var FudgeStory;
          * Adds an item to the inventory
          */
         static add(_item) {
-            let item = Inventory.dialog.querySelector(`[id=${_item.name.replaceAll(" ", "_")}]`);
+            let item = Inventory.getItemElement(_item);
             if (item) {
                 let amount = item.querySelector("amount");
                 amount.innerText = (parseInt(amount.innerText) + 1).toString();
                 return;
             }
             item = document.createElement("li");
-            item.id = _item.name.replaceAll(" ", "_");
+            item.id = Inventory.replaceWhitespace(_item.name);
             item.innerHTML = `<name>${_item.name}</name><amount>1</amount><description>${_item.description}</description><img src="${_item.image}"/>`;
             if (!_item.static)
                 item.addEventListener("pointerdown", Inventory.hndUseItem);
@@ -430,6 +446,15 @@ var FudgeStory;
                 item.addEventListener("pointerdown", custom);
             }
             Inventory.dialog.querySelector("ul").appendChild(item);
+        }
+        /**
+         * Adds an item to the inventory
+         */
+        static getAmount(_item) {
+            let item = Inventory.getItemElement(_item);
+            if (item)
+                return parseInt(item.querySelector("amount").innerText);
+            return 0;
         }
         /**
          * Opens the inventory and return a list of the names of consumed items when the inventory closes again
@@ -453,8 +478,15 @@ var FudgeStory;
         static close() {
             Inventory.dialog.close();
         }
+        static replaceWhitespace(_text) {
+            return _text.replaceAll(" ", "_");
+        }
+        static getItemElement(_item) {
+            return Inventory.dialog.querySelector(`[id=${Inventory.replaceWhitespace(_item.name)}]`);
+        }
     }
     Inventory.hndUseItem = (_event) => {
+        _event.stopPropagation();
         let item = _event.currentTarget;
         Inventory.ƒused.push(item.querySelector("name").textContent);
         let amount = item.querySelector("amount");
@@ -510,6 +542,7 @@ var FudgeStory;
     class Menu {
         constructor(_options, _callback, _cssClass) {
             this.hndSelect = (_event) => {
+                _event.stopPropagation();
                 if (_event.target == this.dialog)
                     return;
                 this.callback(Reflect.get(_event.target, "innerHTML"));
@@ -533,6 +566,7 @@ var FudgeStory;
             });
             let promise = new Promise((_resolve) => {
                 let hndSelect = (_event) => {
+                    _event.stopPropagation();
                     if (_event.target == dialog)
                         return;
                     dialog.removeEventListener(FudgeStory.EVENT.POINTERDOWN, hndSelect);
@@ -990,8 +1024,8 @@ var FudgeStory;
             }
         }
     }
-    Speech.signalForwardTicker = FudgeStory.Progress.defineSignal([FudgeStory.EVENT.KEYUP, FudgeStory.EVENT.POINTERDOWN]);
-    Speech.signalNext = FudgeStory.Progress.defineSignal([FudgeStory.EVENT.KEYUP, FudgeStory.EVENT.POINTERDOWN]);
+    Speech.signalForwardTicker = FudgeStory.Progress.defineSignal([() => FudgeStory.getKeypress(ƒ.KEYBOARD_CODE.SPACE), FudgeStory.EVENT.POINTERDOWN]);
+    Speech.signalNext = FudgeStory.Progress.defineSignal([() => FudgeStory.getKeypress(ƒ.KEYBOARD_CODE.SPACE), FudgeStory.EVENT.POINTERDOWN]);
     Speech.time = new ƒ.Time();
     Speech.delayLetter = 50;
     Speech.delayParagraph = 1000;
