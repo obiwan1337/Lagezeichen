@@ -59,5 +59,14 @@ meter::-webkit-meter-optimum-value {
 }
 
 .gameMenu {
-  visibility: hidden;
+  position: absolute;
+  top: 5%;
+  left: 1%;
+}
+
+.gameMenu button{
+  background-color: #0000;
+  border: none;
+  margin: 0 25px 0 25px;
+  font-size: larger;
 }
